@@ -1,6 +1,7 @@
 package org.example.tests;
 
 import org.example.pages.LoginPage;
+import org.example.pages.MainPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -14,6 +15,7 @@ import static com.codeborne.selenide.WebDriverConditions.url;
 
 public class NavigationTests extends BaseTest {
     LoginPage loginPage = new LoginPage();
+    MainPage mainPage = new MainPage();
 
     @BeforeEach
     void login() {
@@ -23,19 +25,19 @@ public class NavigationTests extends BaseTest {
 
     @ParameterizedTest
     @MethodSource("pages")
-    void navigationTest(String link, String expectedUrl, String expectedTitle) {
+    void navigationTest(String path, String expectedTitle) {
 
-        $(link).click();
+        mainPage.openSection(path);
 
-        webdriver().shouldHave(url("http://localhost:5173" + expectedUrl));
+        webdriver().shouldHave(url("http://localhost:5173" + path));
         $("h1").shouldHave(text(expectedTitle));
     }
 
     static Stream<Arguments> pages() {
         return Stream.of(
-                Arguments.of("a[href=\"/schedule\"]", "/schedule", "Расписание"),
-                Arguments.of("a[href=\"/journal\"]", "/journal", "Журнал предметника"),
-                Arguments.of("a[href=\"/statistic\"]", "/statistic", "Статистика")
+                Arguments.of("/schedule", "Расписание"),
+                Arguments.of("/journal", "Журнал предметника"),
+                Arguments.of("/statistic", "Статистика")
 
         );
     }
