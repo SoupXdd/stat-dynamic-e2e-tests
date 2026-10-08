@@ -4,6 +4,7 @@ import com.codeborne.selenide.ElementsCollection;
 import org.example.pages.JournalPage;
 import org.example.pages.LoginPage;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
@@ -11,6 +12,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 
+@DisplayName("Журнал")
 public class JournalTests extends BaseTest {
     LoginPage loginPage = new LoginPage();
     JournalPage journalPage = new JournalPage();
@@ -23,6 +25,7 @@ public class JournalTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Таблица журнала содержит данные")
     void journalTableTest() {
         journalPage.table().shouldBe(visible);
         journalPage.rows().shouldHave(sizeGreaterThan(0));
@@ -32,6 +35,7 @@ public class JournalTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Фильтрация журнала по группе и сброс фильтров")
     void groupFilterTest() {
         String groupName = journalPage.selectSecondGroup();
 

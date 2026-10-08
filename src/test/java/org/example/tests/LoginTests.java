@@ -1,6 +1,7 @@
 package org.example.tests;
 
 import org.example.pages.LoginPage;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -13,10 +14,12 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.url;
 
+@DisplayName("Авторизация")
 public class LoginTests extends BaseTest {
     LoginPage loginPage = new LoginPage();
 
     @Test
+    @DisplayName("Успешный вход администратора")
     void successAdminAuth() {
         loginPage.openPage();
         loginPage.loginAs("admin", "123456");
@@ -27,6 +30,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Ошибка при входе с неверным логином")
     void unSuccessAdminAuth() {
         loginPage.openPage();
         loginPage.loginAs("admin666", "123456");

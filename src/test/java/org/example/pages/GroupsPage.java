@@ -44,7 +44,7 @@ public class GroupsPage {
 
     public void deleteGroup(String name) {
         row(name).shouldBe(visible).$("button[aria-label='Удалить']").click();
-        SelenideElement deleteModal = $$("[role='dialog']").findBy(text("Удалить группу"));
+        SelenideElement deleteModal = $("dialog");
         deleteModal.shouldBe(visible).$(byText("Удалить")).click();
     }
 }

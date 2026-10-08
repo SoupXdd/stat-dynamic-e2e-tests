@@ -3,6 +3,7 @@ package org.example.tests;
 import org.example.pages.AdminPage;
 import org.example.pages.LoginPage;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -14,6 +15,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.url;
 
+@DisplayName("Административная панель")
 public class AdminPanelTests extends BaseTest {
     LoginPage loginPage = new LoginPage();
     AdminPage adminPage = new AdminPage();
@@ -25,7 +27,8 @@ public class AdminPanelTests extends BaseTest {
         adminPage.open();
     }
 
-    @ParameterizedTest
+    @DisplayName("Проверка навигации по админ-панели")
+    @ParameterizedTest(name = "{index} -> {1}")
     @MethodSource("pages")
     void navigationTest(String path, String expectedTitle) {
 

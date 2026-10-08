@@ -3,6 +3,7 @@ package org.example.tests;
 import org.example.pages.GroupsPage;
 import org.example.pages.LoginPage;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -10,6 +11,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.refresh;
 
 
+@DisplayName("Управление группами")
 public class GroupsTests extends BaseTest {
     LoginPage loginPage = new LoginPage();
     GroupsPage groupsPage = new GroupsPage();
@@ -22,6 +24,7 @@ public class GroupsTests extends BaseTest {
     }
 
     @Test
+    @DisplayName("Создание, сохранение и удаление группы")
     void groupCrudTest() {
         long timestamp = System.currentTimeMillis();
         String groupName = "E2E-группа-" + timestamp;
